@@ -4,8 +4,8 @@ use 5.010001;
 use strict;
 use warnings;
 
-our $DATE = '2014-06-20'; # DATE
-our $VERSION = '0.01'; # VERSION
+our $DATE = '2014-06-25'; # DATE
+our $VERSION = '0.02'; # VERSION
 
 # issue: port must be numeric to avoid warning
 # put everything in path_query
@@ -40,7 +40,7 @@ sub _split_url {
 sub _open_handle {
     my ($self, $request, $scheme, $host, $port) = @_;
 
-    return $self->SUPER::_split_url($request, $scheme, $host, $port)
+    return $self->SUPER::_open_handle($request, $scheme, $host, $port)
         unless $self->{_unix};
 
     my $handle = HTTP::Tiny::Handle::UNIX->new(
@@ -60,9 +60,12 @@ use IO::Socket;
 sub connect {
     my ($self, $scheme, $host, $port, $tiny) = @_;
 
+    # on Unix, we use $host for path and leave port at -1 (unused)
+    my $path = $host;
+
     local($^W) = 0;
     my $sock = IO::Socket::UNIX->new(
-        Peer    => $host,
+        Peer    => $path,
         Type    => SOCK_STREAM,
         Timeout => $self->{timeout},
         Host    => 'localhost',
@@ -70,7 +73,7 @@ sub connect {
 
     unless ($sock) {
         $@ =~ s/^.*?: //;
-        die "Can't open Unix socket $port\: $@";
+        die "Can't open Unix socket $path\: $@";
     }
 
     eval { $sock->blocking(0); };
@@ -81,6 +84,8 @@ sub connect {
     $self->{host} = $host;
     $self->{port} = $port;
     $self->{_unix} = 1;
+    # this is a hack, we inject this so we can get HTTP::Tiny::UNIX object from
+    # HTTP::Tiny::Handle::UNIX, to get path
     $self->{_tiny} = $tiny;
     $self;
 }
@@ -109,7 +114,7 @@ HTTP::Tiny::UNIX - A subclass of HTTP::Tiny to connect to HTTP server over Unix 
 
 =head1 VERSION
 
-This document describes version 0.01 of HTTP::Tiny::UNIX (from Perl distribution HTTP-Tiny-UNIX), released on 2014-06-20.
+This document describes version 0.02 of HTTP::Tiny::UNIX (from Perl distribution HTTP-Tiny-UNIX), released on 2014-06-25.
 
 =head1 SYNOPSIS
 
@@ -136,10 +141,6 @@ example: C<http:/var/run/apid.sock//api/v1/matches>. URL not matching this
 pattern will be passed to HTTP::Tiny.
 
 Proxy is currently not supported.
-
-=head1 KNOWN ISSUES
-
-Request to non-Unix URL fails with message: "Cannot parse URL: '80'".
 
 =head1 SEE ALSO
 

@@ -3,8 +3,8 @@ NAME
     over Unix socket
 
 VERSION
-    This document describes version 0.01 of HTTP::Tiny::UNIX (from Perl
-    distribution HTTP-Tiny-UNIX), released on 2014-06-20.
+    This document describes version 0.02 of HTTP::Tiny::UNIX (from Perl
+    distribution HTTP-Tiny-UNIX), released on 2014-06-25.
 
 SYNOPSIS
      use HTTP::Tiny::UNIX;
@@ -29,9 +29,6 @@ DESCRIPTION
     matching this pattern will be passed to HTTP::Tiny.
 
     Proxy is currently not supported.
-
-KNOWN ISSUES
-    Request to non-Unix URL fails with message: "Cannot parse URL: '80'".
 
 SEE ALSO
     HTTP::Tiny
