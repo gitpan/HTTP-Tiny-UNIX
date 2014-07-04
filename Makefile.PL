@@ -20,7 +20,7 @@ my %WriteMakefileArgs = (
   "LICENSE" => "perl",
   "NAME" => "HTTP::Tiny::UNIX",
   "PREREQ_PM" => {
-    "HTTP::Tiny" => 0
+    "HTTP::Tiny" => "0.043"
   },
   "TEST_REQUIRES" => {
     "File::Spec" => 0,
@@ -28,7 +28,7 @@ my %WriteMakefileArgs = (
     "IPC::Open3" => 0,
     "Test::More" => 0
   },
-  "VERSION" => "0.02",
+  "VERSION" => "0.03",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -37,7 +37,7 @@ my %WriteMakefileArgs = (
 
 my %FallbackPrereqs = (
   "File::Spec" => 0,
-  "HTTP::Tiny" => 0,
+  "HTTP::Tiny" => "0.043",
   "IO::Handle" => 0,
   "IPC::Open3" => 0,
   "Test::More" => 0

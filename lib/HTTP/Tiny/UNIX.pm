@@ -4,8 +4,8 @@ use 5.010001;
 use strict;
 use warnings;
 
-our $DATE = '2014-06-25'; # DATE
-our $VERSION = '0.02'; # VERSION
+our $DATE = '2014-07-04'; # DATE
+our $VERSION = '0.03'; # VERSION
 
 # issue: port must be numeric to avoid warning
 # put everything in path_query
@@ -114,7 +114,7 @@ HTTP::Tiny::UNIX - A subclass of HTTP::Tiny to connect to HTTP server over Unix 
 
 =head1 VERSION
 
-This document describes version 0.02 of HTTP::Tiny::UNIX (from Perl distribution HTTP-Tiny-UNIX), released on 2014-06-25.
+This document describes version 0.03 of HTTP::Tiny::UNIX (from Perl distribution HTTP-Tiny-UNIX), released on 2014-07-04.
 
 =head1 SYNOPSIS
 
