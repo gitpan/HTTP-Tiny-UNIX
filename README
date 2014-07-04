@@ -3,7 +3,7 @@ NAME
     over Unix socket
 
 VERSION
-    This document describes version 0.03 of HTTP::Tiny::UNIX (from Perl
+    This document describes version 0.04 of HTTP::Tiny::UNIX (from Perl
     distribution HTTP-Tiny-UNIX), released on 2014-07-04.
 
 SYNOPSIS

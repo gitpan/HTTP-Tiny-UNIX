@@ -5,7 +5,7 @@ use strict;
 use warnings;
 
 our $DATE = '2014-07-04'; # DATE
-our $VERSION = '0.03'; # VERSION
+our $VERSION = '0.04'; # VERSION
 
 # issue: port must be numeric to avoid warning
 # put everything in path_query
@@ -34,7 +34,7 @@ sub _split_url {
     die "Only http scheme is supported\n" unless $scheme eq 'http';
 
     #return ($scheme, $host,      $port, $path_query, $auth);
-    return  ($scheme, $sock_path, -1,    $path_query, undef);
+    return  ($scheme, $sock_path, -1,    $path_query, '');
 }
 
 sub _open_handle {
@@ -114,7 +114,7 @@ HTTP::Tiny::UNIX - A subclass of HTTP::Tiny to connect to HTTP server over Unix 
 
 =head1 VERSION
 
-This document describes version 0.03 of HTTP::Tiny::UNIX (from Perl distribution HTTP-Tiny-UNIX), released on 2014-07-04.
+This document describes version 0.04 of HTTP::Tiny::UNIX (from Perl distribution HTTP-Tiny-UNIX), released on 2014-07-04.
 
 =head1 SYNOPSIS
 
